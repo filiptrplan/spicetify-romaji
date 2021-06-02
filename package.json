@@ -1,0 +1,23 @@
+{
+  "name": "spicetify-romaji",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:filiptrplan/spicetify-romaji.git",
+  "author": "Filip Trplan <filip@trplan.si>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "d-fi-core": "^1.2.9",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "watch": {
+    "copy": "copy.js"
+  },
+  "scripts": {
+    "watch": "npm-watch"
+  }
+}
