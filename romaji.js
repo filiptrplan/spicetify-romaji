@@ -128,8 +128,6 @@ async function convertKanjiInRow(row) {
 
 function getSongInAlbum(html, albums, song) {
     let trackInfo = {};
-    console.log(albums);
-    console.log(song);
 
     albums.spotify.discs.forEach((disc) => {
         disc.tracks.forEach((track) => {
@@ -244,15 +242,17 @@ async function getAlbumHeader() {
 }
 
 function writeAlbumHeader(album) {
-    const titleEl = document.querySelector('.main-entityHeader-title h1');
-    const artistEl = document.querySelector(
-        '.main-entityHeader-creatorWrapper a'
-    );
-    if (titleEl.innerHTML.isKanjiKana()) {
-        titleEl.innerHTML = album.title;
-    }
-    if (artistEl.innerHTML.isKanjiKana()) {
-        artistEl.innerHTML = album.artist;
+    if (album.title != '') {
+        const titleEl = document.querySelector('.main-entityHeader-title h1');
+        const artistEl = document.querySelector(
+            '.main-entityHeader-creatorWrapper a'
+        );
+        if (titleEl.innerHTML.isKanjiKana()) {
+            titleEl.innerHTML = album.title;
+        }
+        if (artistEl.innerHTML.isKanjiKana()) {
+            artistEl.innerHTML = album.artist;
+        }
     }
 }
 
