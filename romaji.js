@@ -225,6 +225,7 @@ async function getAlbumHeader() {
     const id = state.albumId;
 
     if (albumCache.has(id)) {
+        console.log(albumCache.get(id));
         writeAlbumHeader(albumCache.get(id));
     } else {
         const albumSpotify = await Spicetify.CosmosAsync.get(
@@ -267,11 +268,13 @@ async function getPlayingInfo(playerState) {
         .slice(-1)[0];
     const title = playerState.data.track.metadata.title;
 
+    
     //Calculate song hash from album id and song title
     const songHash = await sha256(`${title}${albumId}`);
 
     if (trackCache.has(songHash)) {
-        writeRowInfo(html, trackCache.get(songHash))
+        const songinfo = trackCache.get(songHash);
+        writeRowInfo(html, songinfo)
     } else {
         const albumSpotify = await Spicetify.CosmosAsync.get(
             `hm://album/v1/album-app/album/${albumId}/desktop`
@@ -313,6 +316,7 @@ function getType() {
             state.type = 'playlist';
             break;
         case 'Album':
+        case 'EP':
             state.type = 'album';
             state.albumId = Spicetify.Platform.History.location.pathname
                 .split('/')
